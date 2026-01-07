@@ -1,0 +1,213 @@
+:root {
+    --bg-color: #0d0d12;
+    --text-color: #ffffff;
+    --primary-color: #00fff2; /* Neon Cyan */
+    --secondary-color: #ff00ff; /* Neon Magenta */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --cell-size: 100px;
+    --gap: 15px;
+    
+    /* Font */
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 10%, #1a1a2e 0%, #0d0d12 100%);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Header */
+.game-header {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 242, 0.3);
+}
+
+.glow-text {
+    background: linear-gradient(90deg, #fff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.accent {
+    color: var(--secondary-color);
+    background: linear-gradient(90deg, var(--secondary-color), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.turn-indicator {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    background: var(--glass-bg);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+#currentPlayer {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Game Board */
+.game-board-container {
+    position: relative;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: var(--gap);
+    background: var(--glass-bg);
+    padding: var(--gap);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.02);
+}
+
+.cell.x {
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-color);
+}
+
+.cell.o {
+    color: var(--secondary-color);
+    text-shadow: 0 0 15px var(--secondary-color);
+}
+
+.cell.taken {
+    cursor: not-allowed;
+}
+
+/* Controls */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), #00add8);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    color: #000;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 15px rgba(0, 255, 242, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 255, 242, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: rgba(20, 20, 25, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 40px rgba(0, 255, 242, 0.2);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hidden .modal-content {
+    transform: scale(0.8);
+}
+
+.modal h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, #fff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    :root {
+        --cell-size: 80px;
+        --gap: 10px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
