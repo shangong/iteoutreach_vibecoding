@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Tic-Tac-Toe</title>
-    <meta name="description" content="A premium, neon-styled Tic-Tac-Toe game.">
+    <meta name="description" content="A premium, neon-styled Tic-Tac-Toe game with both 2-player and AI modes.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,22 @@
         <header class="game-header">
             <h1 class="glow-text">TIC <span class="accent">TAC</span> TOE</h1>
             <div class="turn-indicator" id="turnIndicator">
-                Player <span id="currentPlayer">X</span>'s Turn
+                <span id="playerModeIndicator"></span>
+                <span id="currentTurn">Player <span id="currentPlayer">X</span>'s Turn</span>
+            </div>
+            <div class="score-board" id="scoreBoard">
+                <div class="score">
+                    <span id="playerXScore">0</span>
+                    <span class="score-label">Player X</span>
+                </div>
+                <div class="score">
+                    <span id="draws">0</span>
+                    <span class="score-label">Draws</span>
+                </div>
+                <div class="score">
+                    <span id="playerOScore">0</span>
+                    <span class="score-label">Player O</span>
+                </div>
             </div>
         </header>
 
@@ -42,10 +57,30 @@
     </div>
     
     <!-- Win Overlay -->
+    
+    <div id="modeSelectionModal" class="modal">
+        <div class="modal-content glass-panel">
+            <h2>Choose Game Mode</h2>
+            <div class="mode-buttons">
+                <button id="twoPlayerBtn" class="btn-primary">Two Players</button>
+                <button id="aiPlayerBtn" class="btn-primary">Play vs AI</button>
+            </div>
+        </div>
+    </div>
+
     <div id="endGameModal" class="modal hidden">
         <div class="modal-content glass-panel">
             <h2 id="endGameMessage">Player X Wins!</h2>
             <button id="newGameBtn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <div id="aiThinkingModal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <h2>AI is thinking...</h2>
+            <div class="thinking-indicator">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
         </div>
     </div>
 
