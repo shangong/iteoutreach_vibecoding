@@ -6,6 +6,8 @@ This project is a web-based implementation of the classic **Tic-Tac-Toe** game (
 
 The project was created as a simple yet complete demonstration of front-end web development fundamentals using **HTML**, **CSS**, and **vanilla JavaScript**, without relying on external libraries or frameworks.
 
+You can access the [Public page here](https://shangong.github.io/iteoutreach_vibecoding/).
+
 ---
 
 ## 🛠️ Technologies Used
